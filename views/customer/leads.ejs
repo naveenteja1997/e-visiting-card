@@ -1,0 +1,74 @@
+<%- include('partials/header'); %>
+<%- include('partials/menu'); %>
+<!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">Leads</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/user">Home</a></li>
+                            <li class="breadcrumb-item active">Leads</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 align-self-center text-right d-none d-md-block">
+                       <a href="/user/newlead"> <button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> Create New</button></a>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <!-- .row -->
+                <div class="row">
+                    <% leads.forEach(function(user){ %>
+                        <!-- .col -->
+                    <div class="col-md-6 col-lg-6 col-xlg-4">
+                        <div class="card card-body">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-3 text-center">
+                                    <a href="app-contact-detail.html"><img src="../companylogo/<%= user.LeadsId %>.jpg" alt="user" class="img-circle img-responsive"></a>
+                                </div>
+                                <div class="col-md-8 col-lg-9">
+                                    <h3 class="box-title m-b-0"><%= user.CompanyName %></h3> <small><%= user.Designation %></small>
+                                    <address>
+                                            <%= user.address %>
+                                        <br/>
+                                        <br/>
+                                        <abbr title="Phone">P:</abbr>+<%= user.PhoneNumber %>
+                                    </address>
+                                   <a href="editlead?id=<%= user.LeadsId %>">
+                                        <div class="form-group">
+                                            <div class="form-action">
+                                                <button class="btn btn-info waves-effect waves-light">
+                                                    <span class="btn-label">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </span>
+                                                    Edit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <% })%>
+                </div>
+                <!-- /.row -->
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+               </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <%- include('partials/credentials'); %>
+            <%- include('partials/footer'); %>

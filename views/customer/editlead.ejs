@@ -1,0 +1,182 @@
+<%- include('partials/header'); %>
+<%- include('partials/menu'); %>
+      <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Bread crumb and right sidebar toggle -->
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">Edit Lead</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Leads</a></li>
+                            <li class="breadcrumb-item active">Edit Lead</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- End Bread crumb and right sidebar toggle -->
+                <% if (status ==0) { %>
+                    <div class="alert alert-success alert-rounded">Updated Successfully</div>
+                      <% } %>
+                <!-- Row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header bg-info">
+                                <h4 class="m-b-0 text-white">Edit Lead</h4>
+                            </div>
+                            <div class="card-body">
+                                <form action="/user/editstyle?id=<%= id %>" class="m-t-40" method="POST">
+                                    <div class="form-body">
+                                        <h3>Select Theme</h3>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <select class="form-control" name="style" id="style">
+                                                                        <option value="0" Selected>Select Style</option>
+                                                                        <option value="1" >Narrow</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>   
+                                                    </div>     
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div id="imagepreview">
+
+                                                </div>
+                                            </div>
+                                        </div>   
+                                        </div>
+                                        <div class="form-actions">
+                                                <button type="submit" value="upload" class="btn btn-success"> <i class="fa fa-check"></i>Update</button>
+                                            </div>
+                                        </form>
+                                        <form action="/user/editdetails?id=<%= id %>" class="m-t-40" method="POST" enctype="multipart/form-data">
+                                        <h3 class="card-title">Personal Info</h3>
+                                        <hr>
+                                        <div class="form-body">
+                                        <% leads.forEach(function(user){ %>
+                                        <div class="row p-t-20">
+                                            <div class="col-md-6">
+                                                <div class="form-group controls">
+                                                    <label class="control-label">Name</label>
+                                                    <input type="text" name="fullname" class="form-control" value="<%= user.Name %>" >
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                               <div class="form-group">
+                                                    <label class="control-label">Company Name</label>
+                                                    <input type="text" class="form-control" name="companyname" required data-validation-required-message="Company Name required" value="<%= user.CompanyName %>">
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Designation</label>
+                                                    <input type="text" class="form-control" name="designation" value="<%= user.Designation %>">
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                               <div class="form-group">
+                                                    <label class="control-label">Email Id</label>
+                                                    <input type="email" name="emailid" class="form-control" value="<%= user.EmailId %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Website</label>
+                                                    <input type="text" name="website" class="form-control"value="<%= user.Website %>" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Phone Number</label>
+                                                        <input type="text" name="phonenumber" class="form-control"value="<%= user.PhoneNumber %>" disabled>
+                                                    </div>
+                                                </div>
+                                            <!--/span-->
+                                            <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">About Company</label>
+                                                        <textarea name="aboutcompany" class="form-control"><%= user.AboutCompany %></textarea>
+                                                    </div>
+                                                </div>
+                                                <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <h3 class="box-title m-t-40">Contact Info</h3>
+                                        <hr>
+                                        <div class="row">
+                                              <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Slug</label>
+                                                    <input type="text" name="slug" id="slug" placeholder="/name" class="form-control" required data-validation-required-message="This field is required" value="<%= user.slug %>" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Whatsapp Number</label>
+                                                        <input type="text" name="whastappnumber" class="form-control" value="<%= user.Whatsapp %>" disabled>
+                                                    </div>
+                                                </div> 
+                                        </div>
+                                            <!--/span-->
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Address</label>
+                                                    <textarea name="address" class="form-control" ><%= user.address %></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Sykpe Id</label>
+                                                    <input type="text" class="form-control" name="skypeid" value="<%= user.Skype %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label>Facebook Id</label>
+                                                    <input type="text" class="form-control" name="facebookid" value="<%= user.Facebook %>">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Twitter</label>
+                                                        <input type="text" class="form-control" name="twitter" value="<%= user.Twitter %>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>LinkedIn</label>
+                                                        <input type="text" class="form-control" name="linkedin" value="<%= user.LinkedIn %>">
+                                                    </div>
+                                                </div>
+                                            <!--/span-->
+                                        </div>
+                                    </div>
+                                    <% }); %>
+                                    <div class="form-actions">
+                                        <button type="submit" value="upload" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Row -->
+
+<%- include('partials/credentials'); %>
+<script>
+  
+    $(document).ready(function() {
+    $("#style").change(function() {
+        var src = $(this).val();
+
+        $("#imagepreview").html(src ? "<img src='../assets/images/styles/" + src + ".jpg'>" : "");
+    });
+});
+</script>
+<%- include('partials/footer'); %>
